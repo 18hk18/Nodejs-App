@@ -11,7 +11,7 @@ pipeline {
       }
     }
     stage('Build image') {
-       dockerImage = docker.build("monishavasu/my-react-app:latest")
+       dockerImage = docker.build("harikrishna121/Nodejs-App:latest")
     }
     
     stage('Push image') {
