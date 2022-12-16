@@ -11,13 +11,12 @@ pipeline {
       }
     }
     stage('Build image') {
-       dockerImage = docker.build("harikrishna121/Nodejs-App:latest")
+       dockerImage = docker.build("harikrishna121/demo")
     }
     
-    stage('Push image') {
-        withDockerRegistry([ credentialsId: "Dockerhub", url: "https://hub.docker.com/repository/docker/harikrishna121/" ]) {
-        dockerImage.push()
-        }
-    } 
+    stage('Push Image'){
+       docker.withRegistry('https://registry.hub.docker.com', 'git') {            
+       dockerImage.push("${env.BUILD_NUMBER}")            
+       dockerImage.push("latest")
   }
 }
